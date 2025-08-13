@@ -1,0 +1,21 @@
+name: Matrix Example
+
+on: workflow_dispatch
+
+jobs:
+  test-matrix:
+    runs-on: ${{ matrix.os}}
+    strategy:
+      matrix:
+        os: [ubuntu-latest,windows-latest]
+        node: [14,16]
+        include:
+          - os: macos-latest
+            node: 18
+          - os: ubuntu-latest
+            node: 14
+    steps:
+      - name: Show job info
+        run: echo "Running on OS= ${{matrix.os}} with Node.js  ${{matrix.node}}"
+
+
